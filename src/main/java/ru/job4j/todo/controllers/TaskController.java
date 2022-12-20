@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import ru.job4j.todo.model.Task;
 import ru.job4j.todo.services.TaskService;
 
@@ -26,9 +28,9 @@ public class TaskController {
         return "tasks";
     }
 
-    @GetMapping("/finishedTasks")
+    @GetMapping("/doneTasks")
     public String finishedTasks(Model model) {
-        model.addAttribute("tasks", taskService.getFinishedTasks());
+        model.addAttribute("tasks", taskService.getDoneTasks());
         return "tasks";
     }
 
@@ -36,5 +38,16 @@ public class TaskController {
     public String formAddTask(Model model) {
         model.addAttribute("task", new Task(0, LocalDate.now(), "", false));
         return "addTask";
+    }
+
+    @PostMapping("/createTask")
+    public String createTask(@ModelAttribute Task task) {
+        taskService.addTask(task);
+        return "redirect:/tasks";
+    }
+
+    @GetMapping("/index")
+    public String index() {
+        return "index";
     }
 }

@@ -33,7 +33,7 @@
                 <a class="nav-item nav-link" href="index">Главная</a>
                 <a class="nav-item nav-link" th:href="@{/tasks}">Все задачи</a>
                 <a class="nav-item nav-link" th:href="@{/newTasks}">Новые задачи</a>
-                <a class="nav-item nav-link" th:href="@{/finishedTasks}">Завершенные задачи</a>
+                <a class="nav-item nav-link" th:href="@{/doneTasks}">Завершенные задачи</a>
                 <a class="nav-item nav-link active" th:href="@{/formAddTask}">Добавить Задачу</a>
             </div>
         </div>
@@ -50,8 +50,8 @@
                 <input type="text" readonly class="form-control" id="id">
             </div>
             <div class="form-group">
-                <label for="finished">Завершено</label>
-                <input type="checkbox" readonly class="form-check-input" id="finished">
+                <label for="done">Завершено</label>
+                <input type="checkbox" readonly class="form-check-input" id="done">
             </div>
             <div class="form-group">
                 <label for="created">Дата создания</label>

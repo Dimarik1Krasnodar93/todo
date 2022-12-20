@@ -4,13 +4,14 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
+@Table(name = "tasks")
+@Entity
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,5 +21,5 @@ public class Task {
     @NotNull
     private String description;
     @NotNull
-    private boolean finished;
+    private boolean done;
 }

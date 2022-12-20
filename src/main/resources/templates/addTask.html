@@ -34,7 +34,7 @@
                 <a class="nav-item nav-link" th:href="@{/tasks}">Все задачи</a>
                 <a class="nav-item nav-link" th:href="@{/newTasks}">Новые задачи</a>
                 <a class="nav-item nav-link" th:href="@{/finishedTasks}">Завершенные задачи</a>
-                <a class="nav-item nav-link active" th:href="@{/formAddTask}">Добавить Задачу</a>
+                <a class="nav-item nav-link active" th:href="@{/doneTasks}">Добавить Задачу</a>
             </div>
         </div>
     </nav>
@@ -48,8 +48,9 @@
             <form th:action="@{/createTask}" method="POST">
                 <input type="hidden" name="id" value="0"/>
                 <div class="form-group">
-                    <label for="finished">Завершено</label>
-                    <input type="checkbox" class="form-check-input" id="finished">
+                    <label for="done">Завершено</label>
+                    <br>
+                    <input type="checkbox" class="form-check-input" id="done">
                 </div>
                 <div class="form-group">
                     <label for="description">Описание</label>
