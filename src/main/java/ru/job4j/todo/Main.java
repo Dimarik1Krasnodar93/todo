@@ -1,9 +1,8 @@
-package ru.job4j;
+package ru.job4j.todo;
 
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import ru.job4j.todo.StaticSpring;
 
 @SpringBootApplication
 public class Main {
