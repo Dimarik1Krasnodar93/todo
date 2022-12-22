@@ -3,9 +3,7 @@ package ru.job4j.todo.controllers;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import ru.job4j.todo.model.Task;
 import ru.job4j.todo.services.TaskService;
 
@@ -44,6 +42,18 @@ public class TaskController {
     public String createTask(@ModelAttribute Task task) {
         taskService.addTask(task);
         return "redirect:/tasks";
+    }
+
+    @GetMapping("/task/{id}")
+    public String task(Model model, @PathVariable("id") int id) {
+        Task task = taskService.findById(id);
+        model.addAttribute("task", task);
+        return "formTask";
+    }
+
+    @GetMapping("/formTask")
+    public String formTask(Model model) {
+        return "tasks";
     }
 
     @GetMapping("/index")

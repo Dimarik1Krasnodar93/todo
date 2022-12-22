@@ -49,7 +49,12 @@
             </thread>
             <tbody>
                 <tr th:each="task: ${tasks}">
-                    <td th:text="${task.id}"></td>
+                    <td>
+                        <a th:href="@{|/task/${task.id}|}">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <span th:text="${task.id}"></span>
+                    </td>
                     <td th:text="${task.created}"></td>
                     <td th:text="${task.done}"></td>
                 </tr>

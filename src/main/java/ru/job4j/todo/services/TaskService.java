@@ -12,6 +12,7 @@ import ru.job4j.todo.store.TaskStore;
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Service
 public class TaskService {
     private final SessionFactory sf = StaticSpring.sf();
@@ -52,6 +53,24 @@ public class TaskService {
             session.close();
         }
         return result;
+    }
+
+    public Task findById(int id) {
+        Task result = null;
+        Session session = sf.openSession();
+        Query<Task> query = session.createQuery(TaskQuery.FIND_TASK_BY_ID);
+        query.setParameter("fId", id);
+        try {
+            session.beginTransaction();
+            result = query.uniqueResult();
+            session.getTransaction().commit();
+
+        } catch (Exception ex) {
+            session.getTransaction().rollback();
+            ex.printStackTrace();
+        }
+        return result;
+
     }
 
     public void addTask(Task task) {
