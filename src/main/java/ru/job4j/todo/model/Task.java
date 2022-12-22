@@ -3,6 +3,8 @@ package ru.job4j.todo.model;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 
 import javax.persistence.*;
@@ -10,6 +12,7 @@ import java.time.LocalDate;
 
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "tasks")
 @Entity
 public class Task {
@@ -18,8 +21,8 @@ public class Task {
     private int id;
 
     private LocalDate created = LocalDate.now();
-    @NotNull
+    @NonNull
     private String description;
-    @NotNull
+    @NonNull
     private boolean done;
 }
