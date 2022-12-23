@@ -45,16 +45,22 @@
       </div>
     </div>
     <div class="card-body">
-      <form th:action="@{/updateTask}" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="id" value="0" />
+      <form th:action="@{/updateTask}" method="POST" enctype="multipart/form-data"  th:object="${task}">
+        <div class="form-group">
+          <label for="id">id</label>
+          <input type="text" readonly class="form-control" name = "id" id="id" th:field="*{id}" >
+        </div>
         <div class="form-group">
           <label for="done">Завершено</label>
-          <br>
-          <input type="checkbox" class="form-check-input" name="done" id="done" >
+          <input type="checkbox" readonly class="form-check-input"  name = "done" id="done"  th:field="*{done}">
+        </div>
+        <div class="form-group">
+          <label for="created">Дата создания</label>
+          <input type="text" readonly class="form-control"  name = "created"  id="created"  th:field="*{created}" th:value="${task.created}">
         </div>
         <div class="form-group">
           <label for="description">Описание</label>
-          <input type="text" class="form-control" name="description" id="description" >
+          <input type="text" readonly class="form-control"  name = "description"  id="description"  th:field="*{description}" th:value="${task.description}">
         </div>
         <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
       </form>
