@@ -57,6 +57,22 @@ public class TaskController {
         return "tasks";
     }
 
+
+    @PostMapping("/formUpdateTask")
+    public String formUpdateTask(Model model) {
+        return "tasks";
+    }
+
+    @PostMapping("/doneTask")
+    public String doneTask(Model model) {
+        return "tasks";
+    }
+
+    @PostMapping("/deleteTask")
+    public String deleteTask(Model model) {
+        return "tasks";
+    }
+
     @GetMapping("/index")
     public String index() {
         return "index";
