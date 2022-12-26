@@ -29,7 +29,7 @@ public class TaskController {
     @GetMapping("/doneTasks")
     public String finishedTasks(Model model) {
         model.addAttribute("tasks", taskService.getDoneTasks());
-        return "tasks";
+        return "redirect:/tasks";
     }
 
     @GetMapping("/formAddTask")
@@ -64,9 +64,9 @@ public class TaskController {
     }
 
     @PostMapping("/doneTask")
-    public String doneTask(Model model) {
-
-        return "tasks";
+    public String doneTask(@ModelAttribute Task task) {
+        taskService.doneTask(task);
+        return "redirect:/tasks";
     }
 
     @PostMapping("/deleteTask")

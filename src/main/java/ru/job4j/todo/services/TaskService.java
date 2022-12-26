@@ -77,5 +77,20 @@ public class TaskService {
         taskStore.addTask(task);
     }
 
+    public boolean doneTask(Task task) {
+        boolean result = false;
+        Session session = sf.openSession();
+        Query<Task> query = session.createQuery(TaskQuery.DONE_TASK_BY_ID);
+        query.setParameter("fId", task.getId());
+        try {
+            session.beginTransaction();
+            result = query.executeUpdate() > 0;
+            session.getTransaction().commit();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            session.getTransaction().rollback();
+        }
+        return result;
+    }
 
 }
