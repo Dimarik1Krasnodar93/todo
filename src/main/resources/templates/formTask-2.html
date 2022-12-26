@@ -44,28 +44,24 @@
                 Новая задача
             </div>
         </div>
-        <div class="card-body">
-            <form th:action="@{/doneTask}" method="POST" th:object="${task}">
-                <div class="form-group">
-                    <label for="id">id</label>
-                    <input type="text" readonly class="form-control" name = "id" id="id" th:field="*{id}" th:value="${task.id}">
-                </div>
-                <div class="form-group">
-                    <label for="done">Завершено</label>
-                    <input type="checkbox" readonly class="form-check-input"  name = "done" id="done"  th:field="*{done}" th:value="${task.done}">
-                </div>
-                <div class="form-group">
-                    <label for="created">Дата создания</label>
-                    <input type="text" readonly class="form-control"  name = "created"  id="created"  th:field="*{created}" th:value="${task.created}">
-                </div>
-                <div class="form-group">
-                    <label for="description">Описание</label>
-                    <input type="text" readonly class="form-control"  name = "description"  id="description"  th:field="*{description}" th:value="${task.description}">
-                </div>
-
-                <button type="submit" class="btn btn-primary mt-3" >Завершить задание</button>
-
-            </form>
+        <div class="card-body" th:object="${task}">
+            <div class="form-group">
+                <label for="id">id</label>
+                <input type="text" readonly class="form-control" name = "id" id="id" th:field="*{id}" th:value="${task.id}">
+            </div>
+            <div class="form-group">
+                <label for="done">Завершено</label>
+                <input type="checkbox" readonly class="form-check-input"  name = "done" id="done"  th:field="*{done}" th:value="${task.done}">
+            </div>
+            <div class="form-group">
+                <label for="created">Дата создания</label>
+                <input type="text" readonly class="form-control"  name = "created"  id="created"  th:field="*{created}" th:value="${task.created}">
+            </div>
+            <div class="form-group">
+                <label for="description">Описание</label>
+                <input type="text" readonly class="form-control"  name = "description"  id="description"  th:field="*{description}" th:value="${task.description}">
+            </div>
+            <button type="submit" class="btn btn-primary mt-3"  th:action="@{/doneTask}" method="POST">Завершить задание</button>
             <button type="submit" class="btn btn-primary mt-3"  onclick="@{/formUpdateTask}" method="POST">Редактировать</button>
             <button type="submit" class="btn btn-primary mt-3"  th:action="@{/deleteTask}" method="POST">Удалить задание</button>
         </div>
