@@ -53,10 +53,8 @@ public class TaskController {
 
     @GetMapping("/formTask")
     public String formTask(Model model) {
-
         return "tasks";
     }
-
 
     @PostMapping("/formUpdateTask")
     public String formUpdateTask(Model model) {
@@ -71,13 +69,11 @@ public class TaskController {
 
     @PostMapping("/deleteTask")
     public String deleteTask(Model model) {
-
         return "tasks";
     }
 
     @GetMapping("/index")
     public String index() {
-
         return "index";
     }
 }

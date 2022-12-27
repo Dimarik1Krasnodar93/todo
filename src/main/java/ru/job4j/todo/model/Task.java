@@ -23,6 +23,11 @@ public class Task {
     private LocalDate created = LocalDate.now();
     @NonNull
     private String description;
-    @NonNull
+
     private boolean done;
+
+    public boolean isDone() {
+        return done;
+    }
+
 }
