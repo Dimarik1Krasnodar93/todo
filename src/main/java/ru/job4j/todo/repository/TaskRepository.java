@@ -14,4 +14,6 @@ public interface TaskRepository {
     List<Task> findAll();
 
     List<Task> findByDone(boolean done);
+
+    Task findById(int id);
 }

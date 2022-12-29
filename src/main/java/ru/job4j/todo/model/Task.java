@@ -26,7 +26,7 @@ public class Task {
 
     private boolean done;
 
-    public boolean isDone() {
+    public boolean getDone() {
         return done;
     }
 
