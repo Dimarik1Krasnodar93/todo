@@ -3,6 +3,7 @@ package ru.job4j.todo.repository;
 import lombok.AllArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import ru.job4j.todo.model.Task;;
@@ -38,12 +39,33 @@ public class HibernateTaskRepository implements TaskRepository {
 
     @Override
     public void update(Task task) {
-
+        Session session = sessionFactory.openSession();
+        try {
+            Transaction transaction = session.beginTransaction();
+            session.update(task);
+            transaction.commit();
+        } catch (Exception exception) {
+            session.getTransaction().rollback();
+            exception.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 
     @Override
     public void deleteById(int id) {
-
+        Session session = sessionFactory.openSession();
+        try {
+            Transaction transaction = session.beginTransaction();
+            Task task = new Task();
+            task.setId(id);
+            session.delete(task);
+            transaction.commit();
+        } catch (Exception exception) {
+            exception.printStackTrace();
+        } finally {
+            session.close();
+        }
     }
 
     @Override

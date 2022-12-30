@@ -1,4 +1,4 @@
-package ru.job4j.todo.services;
+package ru.job4j.todo.service;
 
 import lombok.AllArgsConstructor;
 import org.hibernate.Session;
@@ -7,9 +7,7 @@ import org.hibernate.query.Query;
 import org.springframework.stereotype.Service;
 import ru.job4j.todo.model.Task;
 import ru.job4j.todo.repository.TaskRepository;
-import ru.job4j.todo.repository.TaskStore;
 
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -17,7 +15,6 @@ import java.util.List;
 @AllArgsConstructor
 public class TaskService {
     private final SessionFactory sf;
-    private final TaskStore taskStore;
     private final TaskRepository taskRepository;
 
     public static final String DONE_TASK_BY_ID = "UPDATE Task AS t SET done = true WHERE t.id = :fId";
@@ -43,7 +40,7 @@ public class TaskService {
     }
 
     public void addTask(Task task) {
-        taskStore.addTask(task);
+        taskRepository.save(task);
     }
 
     public boolean doneTask(Task task) {
