@@ -53,11 +53,24 @@ public class TaskController {
 
     @GetMapping("/formTask")
     public String formTask(Model model) {
+
         return "tasks";
     }
 
-    @PostMapping("/formUpdateTask")
-    public String formUpdateTask(Model model) {
+    @PostMapping("/updateTask")
+    public String formUpdateTask(
+            @ModelAttribute Task task) {
+        return "tasks";
+    }
+
+    @GetMapping("/updateTask")
+    public String formUpdateTask2(
+            @ModelAttribute Task task) {
+        return "tasks";
+    }
+
+    @GetMapping("/updateTask2/{id}")
+    public String updateTask2(Model model, @PathVariable("id") int id) {
         return "tasks";
     }
 

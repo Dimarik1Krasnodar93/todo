@@ -45,7 +45,7 @@
             </div>
         </div>
         <div class="card-body">
-            <form th:action="@{/doneTask}" method="POST" th:object="${task}">
+            <form th:object="${task}">
                 <div class="form-group">
                     <label for="id">id</label>
                     <input type="text" readonly class="form-control" name = "id" id="id" th:field="*{id}" th:value="${task.id}">
@@ -66,7 +66,13 @@
                 <button type="submit" class="btn btn-primary mt-3" >Завершить задание</button>
 
             </form>
-            <button type="submit" class="btn btn-primary mt-3"  onclick="@{/formUpdateTask}" method="POST">Редактировать</button>
+            <a th:href="@{/updateTask}" th:object="${task}" method="POST">
+                <button type="submit" class="btn btn-primary mt-3" >Редактировать</button>
+            </a>
+            <a th:href="@{|/updateTask2/${task.id}|}">
+                <button type="button">Редактировать2</button>
+            </a>
+
             <button type="submit" class="btn btn-primary mt-3"  th:action="@{/deleteTask}" method="POST">Удалить задание</button>
         </div>
     </div>
