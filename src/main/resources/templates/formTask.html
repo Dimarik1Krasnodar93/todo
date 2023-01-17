@@ -46,6 +46,24 @@
         </div>
         <div class="card-body">
             <form th:object="${task}">
+                <table class ="table">
+                    <thread>
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">Завершено</th>
+                            <th scope="col">Дата создания</th>
+                            <th scope="col">Описание</th>
+                        </tr>
+                    </thread>
+                    <tbody>
+                        <tr>
+                            <td name = "id" th:text="${task.id}" th:field="*{id}"></td>
+                            <td name = "done" th:text="${task.done}" th:field="*{done}"></td>
+                            <td name = "created" th:text="${task.created}" th:field="*{created}"></td>
+                            <td name = "description" th:text="${task.description}" th:field="*{description}"></td>
+                        </tr>
+                    </tbody>
+                </table>
                 <div class="form-group">
                     <label for="id">id</label>
                     <input type="text" readonly class="form-control" name = "id" id="id" th:field="*{id}" th:value="${task.id}">
