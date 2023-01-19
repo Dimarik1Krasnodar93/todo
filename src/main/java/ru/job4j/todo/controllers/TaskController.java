@@ -57,6 +57,11 @@ public class TaskController {
         return "tasks";
     }
 
+    @GetMapping("/formUpdateTaskNew")
+    public String formUpdateTaskNew(@ModelAttribute Task task) {
+        return "formUpdateTaskNew";
+    }
+
     @PostMapping("/updateTask")
     public String formUpdateTask(
             @ModelAttribute Task task) {
@@ -73,6 +78,14 @@ public class TaskController {
     public String updateTask2(Model model, @PathVariable("id") int id) {
         return "tasks";
     }
+
+    @PostMapping("/formUpdateTaskN/{id}")
+    public String updateTaskN(Model model, @PathVariable("id") int id) {
+        Task task = taskService.findById(id);
+        model.addAttribute("task", task);
+        return "redirect:/formUpdateTaskNew";
+    }
+
 
     @PostMapping("/doneTask")
     public String doneTask(@ModelAttribute Task task) {
