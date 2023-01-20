@@ -48,7 +48,7 @@ public class TaskController {
     public String task(Model model, @PathVariable("id") int id) {
         Task task = taskService.findById(id);
         model.addAttribute("task", task);
-        return "formTask";
+        return "one";
     }
 
     @GetMapping("/formTask")
@@ -57,9 +57,11 @@ public class TaskController {
         return "tasks";
     }
 
-    @GetMapping("/formUpdateTaskNew")
-    public String formUpdateTaskNew(@ModelAttribute Task task) {
-        return "formUpdateTaskNew";
+    @GetMapping("/formUpdateTask/{id}")
+    public String formUpdateTaskNew(Model model, @PathVariable("id") int id) {
+        Task task = taskService.findById(id);
+        model.addAttribute("task", task);
+        return "formUpdateTask";
     }
 
     @PostMapping("/updateTask")

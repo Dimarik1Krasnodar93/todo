@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+http://www.w3.org/1999/xhtml6b;" data-darkreader-inline-color=""><html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.cssor:#988f81;" data-darkreader-inline-color="">    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+                                                                                                                                                       integrityhttps://code.jquery.com/jquery-3.4.1.slim.min.jsXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+          integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKUhttps://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js 97); --darkreader-inline-color:#abc66c;" data-darkreader-inline-color="">            crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+          integrityhttps://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.jsJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+  crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+          integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+          https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.cssnline-color="">            crossorigin="anonymous"></script>
+  <link https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css, 97); --darkreader-inline-color:#abc66c;" data-darkreader-inline-color="">="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>All tasks</title>
+</head>
+<body>
+<div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">All tasks</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-item nav-link" href="index">Главная</a>
+        <a class="nav-item nav-link" th:href="@{/tasks}">Все задачи</a>
+        <a class="nav-item nav-link" th:href="@{/newTasks}">Новые задачи</a>
+        <a class="nav-item nav-link" th:href="@{/doneTasks}">Завершенные задачи</a>
+        <a class="nav-item nav-link active" th:href="@{/formAddTask}">Добавить Задачу</a>
+      </div>
+    </div>
+  </nav>
+  <div class="row pt-3">
+    <div class="card-body">
+      <div class="card">
+        <table class="table">
+          <thead>
+          <tr>
+            <th scope="col">Task description</th>
+            <th scope="col">Created</th>
+            <th scope="col">Done</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr>
+            <th><span th:text="${task.description}"></span></th>
+            <th><span th:text="${task.created}"></span></th>
+            <th>
+                                <span th:if="${task.done}">
+                                    <i class="fa fa-check-square-o"></i>
+                                </span>
+              <span th:if="${!task.done}">
+                                    <i class="fa fa-square-o"></i>
+                                </span>
+            </th>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <span th:if="${!task.done}">
+                <div class="vertical-center">
+                    <form th:action="@{/completeTask}" method="POST" th:object="${task}" th:align="center">
+                        <input type="hidden" name="id" th:field="*{id}"/>
+                        <input type="hidden" name="created" th:field="*{created}"/>
+                        <input type="hidden" name="description" th:field="*{description}"/>
+                        <button type="submit" class="btn btn-primary">Завершить</button>
+                    </form>
+                </div>
+            <br/>
+            </span>
+      <div class="vertical-center">
+        <form th:action="@{|/formUpdateTask/${task.id}|}" method="GET" th:align="center">
+          <button type="submit" class="btn btn-primary">Редактировать</button>
+        </form>
+      </div>
+      <br/>
+      <div class="vertical-center">
+        <form th:action="@{/deleteTask}" method="POST" th:object="${task}" th:align="center">
+          <input type="hidden" name="id" th:field="*{id}"/>
+          <button type="submit" class="btn btn-primary">Удалить</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
