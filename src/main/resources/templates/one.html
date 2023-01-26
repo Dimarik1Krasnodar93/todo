@@ -67,7 +67,7 @@
       </div>
       <span th:if="${!task.done}">
                 <div class="vertical-center">
-                    <form th:action="@{/completeTask}" method="POST" th:object="${task}" th:align="center">
+                    <form th:action="@{/doneTask}" method="POST" th:object="${task}" th:align="center">
                         <input type="hidden" name="id" th:field="*{id}"/>
                         <input type="hidden" name="created" th:field="*{created}"/>
                         <input type="hidden" name="description" th:field="*{description}"/>
@@ -82,12 +82,14 @@
         </form>
       </div>
       <br/>
+
       <div class="vertical-center">
-        <form th:action="@{/deleteTask/}" method="POST" th:object="${task}" th:align="center">
+        <form th:action="@{|/deleteTask/${task.id}|}" method="GET" th:align="center">
           <input type="hidden" name="id" th:field="*{id}"/>
           <button type="submit" class="btn btn-primary">Удалить</button>
         </form>
       </div>
+      <br/>
     </div>
   </div>
 </div>

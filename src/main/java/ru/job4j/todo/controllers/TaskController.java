@@ -64,6 +64,11 @@ public class TaskController {
     public String formUpdateTaskNew(Model model, @PathVariable("id") int id) {
         Task task = taskService.findById(id);
         model.addAttribute("task", task);
+        return "formTask";
+    }
+
+    @GetMapping("/formUpdateTaskRedirect")
+    public String formUpdateTaskRedirect(Model model) {
         return "formUpdateTask";
     }
 
@@ -98,9 +103,8 @@ public class TaskController {
         return "redirect:/tasks";
     }
 
-    @PostMapping("/deleteTask")
-    public String deleteTask(HttpServletRequest httpServletRequest) {
-        int id = Integer.parseInt(httpServletRequest.getParameter("id"));
+    @GetMapping("/deleteTask/{id}")
+    public String deleteTask(@PathVariable("id") int id) {
         taskService.deleteById(id);
         return "tasks";
     }
