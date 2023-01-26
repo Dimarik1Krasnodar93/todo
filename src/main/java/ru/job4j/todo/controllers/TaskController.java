@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import ru.job4j.todo.model.Task;
 import ru.job4j.todo.service.TaskService;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import java.time.LocalDate;
 
 @AllArgsConstructor
@@ -97,7 +99,9 @@ public class TaskController {
     }
 
     @PostMapping("/deleteTask")
-    public String deleteTask(Model model) {
+    public String deleteTask(HttpServletRequest httpServletRequest) {
+        int id = Integer.parseInt(httpServletRequest.getParameter("id"));
+        taskService.deleteById(id);
         return "tasks";
     }
 

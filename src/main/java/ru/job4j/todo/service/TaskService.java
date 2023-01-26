@@ -36,7 +36,10 @@ public class TaskService {
 
     public Task findById(int id) {
         return taskRepository.findById(id);
+    }
 
+    public void deleteById(int id) {
+        taskRepository.deleteById(id);
     }
 
     public void addTask(Task task) {
