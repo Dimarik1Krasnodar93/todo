@@ -3,14 +3,15 @@ package ru.job4j.todo.controllers;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import ru.job4j.todo.model.Task;
 import ru.job4j.todo.model.User;
 import ru.job4j.todo.service.TaskService;
 import ru.job4j.util.UserAdditional;
 
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 
@@ -69,7 +70,6 @@ public class TaskController {
         model.addAttribute("task", task);
         return "one";
     }
-
 
     @GetMapping("/formTask")
     public String formTask(Model model,  HttpSession httpSession) {

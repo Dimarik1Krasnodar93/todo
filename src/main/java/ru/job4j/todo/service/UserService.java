@@ -11,8 +11,6 @@ import java.util.Optional;
 @AllArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
-    public final static String FIND_LOGIN_PASSWORD = "from User where name = :fld and password = :fld";
-    public final static String FIND_LOGIN = "SELECT * FROM USERS WHERE login = :fld1";
 
     public Optional<User> add(User user) {
         return userRepository.add(user);
