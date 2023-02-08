@@ -16,9 +16,12 @@ import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @Controller
-@AllArgsConstructor
 public class UserController {
     private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @GetMapping("/registration")
     public String formRegistration(Model model, HttpSession httpSession) {

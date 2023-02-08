@@ -8,9 +8,12 @@ import ru.job4j.todo.repository.UserRepository;
 import java.util.Optional;
 
 @Service
-@AllArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
     public Optional<User> add(User user) {
         return userRepository.add(user);
@@ -19,5 +22,4 @@ public class UserService {
     public Optional<User> findUserByLoginAndPassword(String login, String password) {
         return userRepository.findUserByLoginAndPassword(login, password);
     }
-
 }

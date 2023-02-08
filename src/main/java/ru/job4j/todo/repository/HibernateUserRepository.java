@@ -12,24 +12,22 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-@AllArgsConstructor
 public class HibernateUserRepository implements UserRepository {
     private final SessionFactory sessionFactory;
+    private String findLoginAndPassword = "from User where name = :fld and password = :fld";
+
+    public HibernateUserRepository(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
 
     @Override
     public Optional<User> add(User user) {
-        Session session = sessionFactory.getCurrentSession();
+        Session session = sessionFactory.openSession();
         try {
             session.beginTransaction();
-            Query<User> query = session.createQuery("from User where login = :fld");
-            query.setParameter("fld", user.getLogin());
-            query.executeUpdate();
-            List<User> list = query.getResultList();
-            if (list.size() != 0) {
-                return Optional.of(list.get(0));
-            }
             session.save(user);
             session.getTransaction().commit();
+            return Optional.of(user);
         } catch (Exception ex) {
             session.getTransaction().rollback();
         } finally {
@@ -43,7 +41,7 @@ public class HibernateUserRepository implements UserRepository {
         Session session = sessionFactory.openSession();
         Optional<User> result = Optional.empty();
         try {
-            Query<User> query = session.createQuery(FIND_LOGIN_PASSWORD, User.class);
+            Query<User> query = session.createQuery(findLoginAndPassword, User.class);
             query.setParameter("fld", login);
             query.setParameter("fld", password);
             session.beginTransaction();
