@@ -13,7 +13,7 @@ import java.util.Optional;
 public class HibernateUserRepository implements UserRepository {
     private final CrudRepository crudRepository;
 
-    public HibernateUserRepository( CrudRepository crudRepository) {
+    public HibernateUserRepository(CrudRepository crudRepository) {
         this.crudRepository = crudRepository;
     }
 
