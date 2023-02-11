@@ -11,12 +11,9 @@ import java.util.Optional;
 
 @Repository
 public class HibernateUserRepository implements UserRepository {
-    private final SessionFactory sessionFactory;
     private final CrudRepository crudRepository;
-    private String findLoginPassword = "from User where name = :fld1 and password = :fld2";
 
-    public HibernateUserRepository(SessionFactory sessionFactory, CrudRepository crudRepository) {
-        this.sessionFactory = sessionFactory;
+    public HibernateUserRepository( CrudRepository crudRepository) {
         this.crudRepository = crudRepository;
     }
 
@@ -28,10 +25,10 @@ public class HibernateUserRepository implements UserRepository {
 
     @Override
     public Optional<User> findUserByLoginAndPassword(String login, String password) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("fld1", login);
-        map.put("fld2", password);
-        List<User> list = crudRepository.query(findLoginPassword, User.class, map);
+        String hql = "from User where name = :login and password = :password";
+        Map<String, Object> map = Map.of("login", login,
+        "password", password);
+        List<User> list = crudRepository.query(hql, User.class, map);
         return list.size() > 0 ? Optional.of(list.get(0)) : Optional.empty();
     }
 }
