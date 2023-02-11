@@ -19,8 +19,7 @@ public class HibernateUserRepository implements UserRepository {
 
     @Override
     public Optional<User> add(User user) {
-        crudRepository.run(session -> session.save(user));
-        return Optional.of(user);
+        return crudRepository.crud(user);
     }
 
     @Override

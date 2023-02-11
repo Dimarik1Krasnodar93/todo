@@ -52,7 +52,7 @@ public class CrudRepository {
         return tx(command);
     }
 
-    public <T> Optional<T> crud(Function<Session, T> function, T param) {
+    public <T> Optional<T> crud(T param) {
         Session session = sessionFactory.openSession();
         try {
             session.beginTransaction();
