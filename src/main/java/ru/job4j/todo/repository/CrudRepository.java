@@ -40,6 +40,18 @@ public class CrudRepository {
         }
     }
 
+    public <T> Optional<T> optional(String query, Class<T> cl, Map<String, Object> args) {
+        Function<Session, Optional<T>> command = session -> {
+            var sq = session
+                    .createQuery(query, cl);
+            for (Map.Entry<String, Object> arg : args.entrySet()) {
+                sq.setParameter(arg.getKey(), arg.getValue());
+            }
+            return Optional.ofNullable(sq.getSingleResult());
+        };
+        return tx(command);
+    }
+
     public <T> List<T> query(String query, Class<T> cl, Map<String, Object> args) {
         Function<Session, List<T>> command = session -> {
             var sq = session
