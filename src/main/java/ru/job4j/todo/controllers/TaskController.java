@@ -58,6 +58,7 @@ public class TaskController {
         public String createTask(Model model, @ModelAttribute Task task, HttpSession httpSession) {
             User user = UserAdditional.getFromHttpSession(httpSession);
             model.addAttribute("user", user);
+            task.setUser(user);
             taskService.addTask(task);
             return "redirect:/tasks";
     }

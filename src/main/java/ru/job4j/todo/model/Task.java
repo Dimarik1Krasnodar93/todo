@@ -26,8 +26,25 @@ public class Task {
 
     private boolean done;
 
+
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    public Task(int id, LocalDate created, @NonNull String description, boolean done) {
+        this.id = id;
+        this.created = created;
+        this.description = description;
+        this.done = done;
+    }
+
     public boolean getDone() {
         return done;
+    }
+
+    public User getUser() {
+        return user;
     }
 
 }
