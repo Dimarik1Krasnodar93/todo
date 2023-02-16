@@ -1,1 +1,0 @@
-update tasks set user_id = 0;
