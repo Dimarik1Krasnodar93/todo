@@ -93,6 +93,7 @@ public class TaskController {
             @ModelAttribute Task task, Model model, HttpSession httpSession) {
         User user = UserAdditional.getFromHttpSession(httpSession);
         model.addAttribute("user", user);
+        task.setUser(user);
         taskService.update(task);
         return "tasks";
     }
