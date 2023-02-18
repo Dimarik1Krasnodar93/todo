@@ -11,7 +11,6 @@ import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "tasks")
 @Entity
@@ -31,6 +30,12 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "priority_id")
+    private Priority priority;
+
+
 
     public Task(int id, LocalDate created, @NonNull String description, boolean done) {
         this.id = id;

@@ -11,15 +11,19 @@ import ru.job4j.todo.model.Task;;
 import java.util.*;
 
 @Repository
-@AllArgsConstructor
 public class HibernateTaskRepository implements TaskRepository {
 
     private final SessionFactory sessionFactory;
     private final CrudRepository crudRepository;
 
-    public static final String FIND_ALL_TASKS = "SELECT t FROM Task AS t";
-    public static final String FIND_BY_DONE = "SELECT t FROM Task AS t WHERE t.done = :fDone";
+    public static final String FIND_ALL_TASKS = "SELECT t FROM Task AS t JOIN FETCH t.priority";
+    public static final String FIND_BY_DONE = "SELECT t FROM Task AS t WHERE t.done = :fDone JOIN FETCH t.priority";
     public static final String FIND_TASK_BY_ID = "SELECT t FROM Task AS t WHERE t.id = :fId";
+
+    public HibernateTaskRepository(SessionFactory sessionFactory, CrudRepository crudRepository) {
+        this.sessionFactory = sessionFactory;
+        this.crudRepository = crudRepository;
+    }
 
     @Override
     public Task save(Task task) {
