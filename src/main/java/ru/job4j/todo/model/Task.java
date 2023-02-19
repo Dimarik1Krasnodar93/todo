@@ -9,6 +9,7 @@ import lombok.NonNull;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -35,6 +36,13 @@ public class Task {
     @JoinColumn(name = "priority_id")
     private Priority priority;
 
+    @ManyToMany
+    @JoinTable(
+            name = "categories_tasks",
+            joinColumns = {@JoinColumn(name = "task_id")},
+            inverseJoinColumns = {@JoinColumn(name = "category_id")}
+    )
+    private List<Category> categories;
 
 
     public Task(int id, LocalDate created, @NonNull String description, boolean done) {
@@ -52,4 +60,11 @@ public class Task {
         return user;
     }
 
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
 }

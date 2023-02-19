@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import ru.job4j.todo.model.Task;
 import ru.job4j.todo.model.User;
+import ru.job4j.todo.service.CategoryService;
 import ru.job4j.todo.service.TaskService;
 import ru.job4j.util.UserAdditional;
 
@@ -19,6 +20,7 @@ import java.time.LocalDate;
 @Controller
 public class TaskController {
     private final TaskService taskService;
+    private final CategoryService categoryService;
 
     @GetMapping("/tasks")
     public String tasks(Model model, @ModelAttribute User user, HttpSession httpSession) {
@@ -51,6 +53,7 @@ public class TaskController {
         User user = UserAdditional.getFromHttpSession(httpSession);
         model.addAttribute("user", user);
         model.addAttribute("task", new Task(0, LocalDate.now(), "", false));
+        model.addAttribute("categories", categoryService.getAllCategories());
         return "addTask";
     }
 

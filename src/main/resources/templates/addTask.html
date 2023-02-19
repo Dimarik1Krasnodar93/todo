@@ -55,6 +55,11 @@
                     <label for="description">Описание</label>
                     <input type="text" class="form-control" name="description" id="description" >
                 </div>
+                <div th:each="category: ${categories}">
+                    <input type="checkbox" name="${category.name}">
+                        <span th:text="${category.name}"></span>
+                    </input>
+                </div>
                 <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
             </form>
         </div>
