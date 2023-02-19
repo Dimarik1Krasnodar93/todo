@@ -3,8 +3,7 @@ package ru.job4j.todo.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import ru.job4j.todo.toone.Role;
-import ru.job4j.todo.toone.UserMessenger;
+
 
 import javax.persistence.*;
 import java.util.List;
@@ -28,13 +27,6 @@ public class User {
     @OneToMany (mappedBy = "user")
     private List<Task> taskList;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "j_user_id")
-    private List<UserMessenger> messengers;
-
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
 
     public User(int id, String name, String login, String password) {
         this.id = id;
