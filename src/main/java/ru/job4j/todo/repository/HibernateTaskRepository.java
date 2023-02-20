@@ -18,7 +18,7 @@ public class HibernateTaskRepository implements TaskRepository {
 
     public static final String FIND_ALL_TASKS = "SELECT t FROM Task AS t JOIN FETCH t.priority";
     public static final String FIND_BY_DONE = "SELECT t FROM Task AS t  JOIN FETCH t.priority WHERE t.done = :fDone";
-    public static final String FIND_TASK_BY_ID = "SELECT t FROM Task AS t WHERE t.id = :fId";
+    public static final String FIND_TASK_BY_ID = "SELECT t FROM Task AS t JOIN FETCH t.priority WHERE t.id = :fId";
 
     public HibernateTaskRepository(SessionFactory sessionFactory, CrudRepository crudRepository) {
         this.sessionFactory = sessionFactory;

@@ -9,6 +9,7 @@ import lombok.NonNull;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -42,7 +43,7 @@ public class Task {
             joinColumns = {@JoinColumn(name = "task_id")},
             inverseJoinColumns = {@JoinColumn(name = "category_id")}
     )
-    private List<Category> categories;
+    private List<Category> categories = new ArrayList<>();
 
 
     public Task(int id, LocalDate created, @NonNull String description, boolean done) {

@@ -54,12 +54,17 @@
                 <div class="form-group">
                     <label for="description">Описание</label>
                     <input type="text" class="form-control" name="description" id="description" >
+
                 </div>
-                <div th:each="category: ${categories}">
-                    <input type="checkbox" name="${category.name}">
-                        <span th:text="${category.name}"></span>
-                    </input>
+
+                <div class="mb-31">
+                    <label for="categories">Категории</label>
+                    <select class="form-control" id="categories" name="categories" multiple>
+                        <option th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}">
+                        </option>
+                    </select>
                 </div>
+
                 <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
             </form>
         </div>
