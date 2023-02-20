@@ -17,5 +17,8 @@
     <include file="scripts/008_create_category.sql" relativeToChangelogFile="true"/>
     <include file="scripts/009_create_category_task.sql" relativeToChangelogFile="true"/>
     <include file="scripts/010_insert_categories.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/011_add_timestamp_table_users.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/012_set_default_user_zone.sql" relativeToChangelogFile="true"/>
+
 
 </databaseChangeLog>

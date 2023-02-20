@@ -23,6 +23,8 @@ public class User {
     private String login;
     @Column
     private String password;
+    @Column
+    private String user_zone;
 
     @OneToMany (mappedBy = "user")
     private List<Task> taskList;
