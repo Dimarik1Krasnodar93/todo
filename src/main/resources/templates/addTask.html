@@ -57,10 +57,11 @@
 
                 </div>
 
-                <div class="mb-31">
-                    <label for="categories">Категории</label>
-                    <select class="form-control" id="categories" name="categories" multiple>
-                        <option th:each="category:${categories}" th:value="${category.id}" th:text="${category.name}">
+                <div class="form-group">
+                    <label for="category.id">Категории</label>
+                    <select class="form-control" id="category.id" name="category.id" multiple>
+                        <option th:each="category:${categories}" th:value="${category.id}"
+                                th:text="${category.name}" th:name="${category.id}">
                         </option>
                     </select>
                 </div>
