@@ -26,12 +26,9 @@ public class HibernateCategoryRepository implements CategoryRepository {
 
     @Override
     public List<Category> findByListId(List<Integer> list) {
-        if (list.size() == 0) {
-            return new ArrayList<>();
-        }
-        StringBuilder query = new StringBuilder("SELECT t from Category AS t where t.id IN :list");
+        String query = "SELECT t from Category AS t where t.id IN :list";
         HashMap<String, Object> map = new HashMap<>();
         map.put("list", list);
-        return crudRepository.query(query.toString(), Category.class, map);
+        return crudRepository.query(query, Category.class, map);
     }
 }
