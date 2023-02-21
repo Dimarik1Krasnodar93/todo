@@ -5,7 +5,10 @@ import org.springframework.stereotype.Service;
 import ru.job4j.todo.model.User;
 import ru.job4j.todo.repository.UserRepository;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
+import java.util.TimeZone;
 
 @Service
 public class UserService {
@@ -21,5 +24,13 @@ public class UserService {
 
     public Optional<User> findUserByLoginAndPassword(String login, String password) {
         return userRepository.findUserByLoginAndPassword(login, password);
+    }
+
+    public List<TimeZone> getTimeZones() {
+        List<TimeZone> zones = new ArrayList<>();
+        for (String timeId : TimeZone.getAvailableIDs()) {
+            zones.add(TimeZone.getTimeZone(timeId));
+        }
+        return zones;
     }
 }

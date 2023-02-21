@@ -25,6 +25,7 @@ public class UserController {
 
     @GetMapping("/registration")
     public String formRegistration(Model model, HttpSession httpSession) {
+        model.addAttribute("userZones", userService.getTimeZones());
         User user = UserAdditional.getFromHttpSession(httpSession);
         model.addAttribute("user", user);
         return "registration";

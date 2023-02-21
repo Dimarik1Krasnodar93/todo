@@ -23,12 +23,11 @@ public class User {
     private String login;
     @Column
     private String password;
-    @Column
+    @Column(name = "user_zone")
     private String userZone;
 
     @OneToMany (mappedBy = "user")
     private List<Task> taskList;
-
 
     public User(int id, String name, String login, String password) {
         this.id = id;
@@ -42,7 +41,4 @@ public class User {
         return "User{"
                 + "name='" + name + '\'' +  '}';
     }
-
-
-
 }

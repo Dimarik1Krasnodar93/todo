@@ -58,6 +58,12 @@
                         <label for="password">Пароль</label>
                         <input type="password" class="form-control" name="password" id="password">
                     </div>
+                    <div class="form-group">
+                        <label for="userZone">Часовой пояс</label>
+                        <select class="form-control" id="userZone" name="userZone">
+                            <option th:each="userZone : ${userZones}" th:value="${userZone.ID}" th:text="${userZone.ID}"></option>
+                        </select>
+                    </div>
                     <button type="submit" class="btn btn-primary mt-3">Сохранить</button>
                 </form>
             </div>
