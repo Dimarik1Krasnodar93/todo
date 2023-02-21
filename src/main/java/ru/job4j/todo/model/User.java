@@ -24,7 +24,7 @@ public class User {
     @Column
     private String password;
     @Column
-    private String user_zone;
+    private String userZone;
 
     @OneToMany (mappedBy = "user")
     private List<Task> taskList;
