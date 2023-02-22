@@ -20,9 +20,6 @@ public class CategoryService {
     }
 
     public List<Category> getCategoriesByListId(List<Integer> listId) {
-        if (listId.isEmpty()) {
-            return new ArrayList<>();
-        }
         return categoryRepository.findByListId(listId);
     }
 }
