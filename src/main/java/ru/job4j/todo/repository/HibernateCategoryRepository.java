@@ -17,7 +17,7 @@ public class HibernateCategoryRepository implements CategoryRepository {
     private final SessionFactory sessionFactory;
     private final CrudRepository crudRepository;
 
-    public static final String FIND_ALL_CATEGORIES = "SELECT Category FROM Category AS Category";
+    public static final String FIND_ALL_CATEGORIES = "SELECT C FROM Category AS C";
 
     @Override
     public List<Category> findAll() {
@@ -26,7 +26,7 @@ public class HibernateCategoryRepository implements CategoryRepository {
 
     @Override
     public List<Category> findByListId(List<Integer> list) {
-        String query = "SELECT Category from Category AS Category  where Category.id IN :list";
+        String query = "SELECT C from Category AS C  where C.id IN :list";
         HashMap<String, Object> map = new HashMap<>();
         map.put("list", list);
         return crudRepository.query(query, Category.class, map);
