@@ -14,6 +14,7 @@ import ru.job4j.util.UserAdditional;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.TimeZone;
 
 @AllArgsConstructor
 @Controller
@@ -63,6 +64,7 @@ public class TaskController {
             model.addAttribute("user", user);
             task.setCategories(categoryService.getCategoriesByListId(categoriesId));
             task.setUser(user);
+            task.setUTCreated();
             taskService.addTask(task);
             return "redirect:/tasks";
     }

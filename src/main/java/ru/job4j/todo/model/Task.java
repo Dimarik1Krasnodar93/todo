@@ -8,7 +8,7 @@ import lombok.NonNull;
 
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.time.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -67,5 +67,17 @@ public class Task {
 
     public void setCategories(List<Category> categories) {
         this.categories = categories;
+    }
+
+    public void setUTCreated() {
+        ZonedDateTime nowInUTC = ZonedDateTime.of(LocalDateTime.of(created, LocalTime.now()),
+                ZoneId.of("UTC"));
+        created = nowInUTC.toLocalDate();
+    }
+
+    public void getCreatedWithTimeZone(String timezone) {
+        ZonedDateTime nowInUTC = ZonedDateTime.of(LocalDateTime.of(created, LocalTime.now()),
+                ZoneId.of(timezone));
+        created = nowInUTC.toLocalDate();
     }
 }
