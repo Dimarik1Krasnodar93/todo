@@ -90,6 +90,7 @@ public class TaskController {
         User user = UserAdditional.getFromHttpSession(httpSession);
         model.addAttribute("user", user);
         Task task = taskService.findById(id);
+        task.getCreatedWithTimeZone(user.getUserZone());
         model.addAttribute("task", task);
         return "updateTask";
     }

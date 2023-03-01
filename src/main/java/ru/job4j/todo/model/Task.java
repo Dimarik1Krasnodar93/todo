@@ -75,9 +75,14 @@ public class Task {
         created = nowInUTC.toLocalDate();
     }
 
-    public void getCreatedWithTimeZone(String timezone) {
+    public LocalDate getCreatedWithTimeZone(String timezone) {
         ZonedDateTime nowInUTC = ZonedDateTime.of(LocalDateTime.of(created, LocalTime.now()),
                 ZoneId.of(timezone));
-        created = nowInUTC.toLocalDate();
+        return nowInUTC.toLocalDate();
     }
+
+    public void updateCreatedWithTimeZone(String timezone) {
+        created = getCreatedWithTimeZone(timezone);
+    }
+
 }
