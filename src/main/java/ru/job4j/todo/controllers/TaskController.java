@@ -9,6 +9,7 @@ import ru.job4j.todo.model.Task;
 import ru.job4j.todo.model.User;
 import ru.job4j.todo.service.CategoryService;
 import ru.job4j.todo.service.TaskService;
+import ru.job4j.util.TaskAdditional;
 import ru.job4j.util.UserAdditional;
 
 import javax.servlet.http.HttpSession;
@@ -26,7 +27,6 @@ public class TaskController {
     public String tasks(Model model, @ModelAttribute User user, HttpSession httpSession) {
         user = UserAdditional.getFromHttpSession(httpSession);
         model.addAttribute("user", user);
-
         model.addAttribute("tasks", taskService.getAllTasks());
 
         return "tasks";
@@ -64,7 +64,7 @@ public class TaskController {
             model.addAttribute("user", user);
             task.setCategories(categoryService.getCategoriesByListId(categoriesId));
             task.setUser(user);
-            task.setUTCreated();
+            TaskAdditional.updateTaskWithTimeZone(task, "UTC");
             taskService.addTask(task);
             return "redirect:/tasks";
     }
@@ -90,7 +90,7 @@ public class TaskController {
         User user = UserAdditional.getFromHttpSession(httpSession);
         model.addAttribute("user", user);
         Task task = taskService.findById(id);
-        task.getCreatedWithTimeZone(user.getUserZone());
+        TaskAdditional.updateTaskWithTimeZone(task, user.getUserZone());
         model.addAttribute("task", task);
         return "updateTask";
     }
