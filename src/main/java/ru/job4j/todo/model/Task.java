@@ -69,10 +69,4 @@ public class Task {
         this.categories = categories;
     }
 
-    public void setUTCreated1() {
-        ZonedDateTime nowInUTC = ZonedDateTime.of(LocalDateTime.of(created, LocalTime.now()),
-                ZoneId.of("UTC"));
-        created = nowInUTC.toLocalDate();
-    }
-
 }

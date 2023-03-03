@@ -9,6 +9,7 @@ import ru.job4j.todo.model.Task;
 import ru.job4j.todo.model.User;
 import ru.job4j.todo.service.CategoryService;
 import ru.job4j.todo.service.TaskService;
+import ru.job4j.util.PropertiesAdditional;
 import ru.job4j.util.TaskAdditional;
 import ru.job4j.util.UserAdditional;
 
@@ -64,7 +65,8 @@ public class TaskController {
             model.addAttribute("user", user);
             task.setCategories(categoryService.getCategoriesByListId(categoriesId));
             task.setUser(user);
-            TaskAdditional.updateTaskWithTimeZone(task, "UTC");
+            TaskAdditional.updateTaskWithTimeZone(task,
+                    PropertiesAdditional.properties.getProperty("timezone"));
             taskService.addTask(task);
             return "redirect:/tasks";
     }
