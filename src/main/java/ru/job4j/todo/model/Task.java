@@ -21,7 +21,8 @@ public class Task {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    private LocalDate created = LocalDate.now();
+    @Column
+    private LocalDateTime created = LocalDateTime.now();
     @NonNull
     private String description;
 
@@ -46,7 +47,7 @@ public class Task {
     private List<Category> categories = new ArrayList<>();
 
 
-    public Task(int id, LocalDate created, @NonNull String description, boolean done) {
+    public Task(int id, LocalDateTime created, @NonNull String description, boolean done) {
         this.id = id;
         this.created = created;
         this.description = description;

@@ -15,6 +15,7 @@ import ru.job4j.util.UserAdditional;
 
 import javax.servlet.http.HttpSession;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.TimeZone;
 
@@ -53,7 +54,7 @@ public class TaskController {
     public String formAddTask(Model model, HttpSession httpSession) {
         User user = UserAdditional.getFromHttpSession(httpSession);
         model.addAttribute("user", user);
-        model.addAttribute("task", new Task(0, LocalDate.now(), "", false));
+        model.addAttribute("task", new Task(0, LocalDateTime.now(), "", false));
         model.addAttribute("categories", categoryService.getAllCategories());
         return "addTask";
     }
