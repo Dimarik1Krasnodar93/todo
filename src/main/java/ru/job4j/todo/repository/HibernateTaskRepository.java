@@ -6,8 +6,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
-import ru.job4j.todo.model.Task;;
+import ru.job4j.todo.model.Task;
+import ru.job4j.util.TaskAdditional;
+import ru.job4j.util.UserAdditional;;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.*;
 
 @Repository
@@ -45,20 +49,26 @@ public class HibernateTaskRepository implements TaskRepository {
 
     @Override
     public List<Task> findAll() {
-        return crudRepository.query(FIND_ALL_TASKS, Task.class, new HashMap<>());
+        List<Task> rslt = crudRepository.query(FIND_ALL_TASKS, Task.class, new HashMap<>());
+        TaskAdditional.updateListTasksWithUserZone(rslt);
+        return rslt;
     }
 
     @Override
     public List<Task> findByDone(boolean done) {
         Map<String, Object> map = new HashMap<>();
         map.put("fDone", done);
-        return crudRepository.query(FIND_BY_DONE, Task.class, map);
+        List<Task> rslt = crudRepository.query(FIND_BY_DONE, Task.class, map);
+        TaskAdditional.updateListTasksWithUserZone(rslt);
+        return rslt;
     }
 
     @Override
     public Task findById(int id) {
         Map<String, Object> map = new HashMap<>();
         map.put("fId", id);
+        Task task = crudRepository.query(FIND_TASK_BY_ID, Task.class, map).get(0);
+        TaskAdditional.updateTaskWithUserZone(task, ZoneId.systemDefault().toString());
         return crudRepository.query(FIND_TASK_BY_ID, Task.class, map).get(0);
     }
 
