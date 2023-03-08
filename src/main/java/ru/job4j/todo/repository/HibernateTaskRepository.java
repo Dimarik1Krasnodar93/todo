@@ -50,7 +50,6 @@ public class HibernateTaskRepository implements TaskRepository {
     @Override
     public List<Task> findAll() {
         List<Task> rslt = crudRepository.query(FIND_ALL_TASKS, Task.class, new HashMap<>());
-        TaskAdditional.updateListTasksWithUserZone(rslt);
         return rslt;
     }
 
@@ -59,7 +58,6 @@ public class HibernateTaskRepository implements TaskRepository {
         Map<String, Object> map = new HashMap<>();
         map.put("fDone", done);
         List<Task> rslt = crudRepository.query(FIND_BY_DONE, Task.class, map);
-        TaskAdditional.updateListTasksWithUserZone(rslt);
         return rslt;
     }
 
@@ -68,7 +66,6 @@ public class HibernateTaskRepository implements TaskRepository {
         Map<String, Object> map = new HashMap<>();
         map.put("fId", id);
         Task task = crudRepository.query(FIND_TASK_BY_ID, Task.class, map).get(0);
-        TaskAdditional.updateTaskWithUserZone(task, ZoneId.systemDefault().toString());
         return crudRepository.query(FIND_TASK_BY_ID, Task.class, map).get(0);
     }
 

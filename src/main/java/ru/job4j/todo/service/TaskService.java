@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Service;
+import ru.job4j.todo.model.Priority;
 import ru.job4j.todo.model.Task;
 import ru.job4j.todo.repository.TaskRepository;
 
@@ -47,6 +48,9 @@ public class TaskService {
     }
 
     public void addTask(Task task) {
+        if (task.getPriority() == null) {
+            task.setPriority(new Priority(1, "", 1));
+        }
         taskRepository.save(task);
     }
 
