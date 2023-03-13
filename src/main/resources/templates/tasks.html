@@ -64,7 +64,7 @@
                     </a>
                 </td>
                 <td th:text="${task.user}"></td>
-                <td th:text="${#temporals.format(task.created, 'dd/MM/yyyy HH:mm', new java.util.Locale(user.userZone, user.userZone))}"></td>
+                <td th:text="${task.getCreatedTimeZone()}"></td>
                 <td th:text="${task.done}"></td>
                 <td th:text="${task.priority}"></td>
             </tr>

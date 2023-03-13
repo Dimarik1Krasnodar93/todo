@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import ru.job4j.util.PropertiesAdditional;
 
 
 import javax.persistence.*;
@@ -71,4 +72,10 @@ public class Task {
         this.categories = categories;
     }
 
+    public LocalDateTime getCreatedTimeZone() {
+        String stringTZ = ZoneId.systemDefault().toString();
+        ZonedDateTime nowInUTC = ZonedDateTime.of(created,
+                ZoneId.of(PropertiesAdditional.properties.getProperty("timezone")));
+        return nowInUTC.withZoneSameInstant(ZoneId.of(stringTZ)).toLocalDateTime();
+    }
 }
